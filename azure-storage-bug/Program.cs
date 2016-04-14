@@ -20,8 +20,6 @@ namespace windowsstoragebug
 
 			var file = Path.GetTempFileName ();
 
-			var blobId = Path.GetFileName (file);
-
 			var containerId = "container" + Guid.NewGuid ().ToString ().Replace("-", "");
 
 			var account = new CloudStorageAccount (new Microsoft.WindowsAzure.Storage.Auth.StorageCredentials (accountName, accountKey), true);
@@ -30,6 +28,8 @@ namespace windowsstoragebug
 			blobClient.DefaultRequestOptions.ServerTimeout = new TimeSpan (1, 0, 0);
 			blobClient.DefaultRequestOptions.MaximumExecutionTime = new TimeSpan (1, 0, 0);
 			blobClient.DefaultRequestOptions.SingleBlobUploadThresholdInBytes = 67108864; //64M
+
+			// Upload with UploadFromFile
 
 			try{
 
@@ -62,6 +62,8 @@ namespace windowsstoragebug
 				blobClient.GetContainerReference (containerId).DeleteIfExists ();
 			}
 
+			// Upload with PutBlock
+
 			try{
 				containerId = "container" + Guid.NewGuid ().ToString ().Replace("-", "");
 				var container = blobClient.GetContainerReference(containerId);
@@ -90,10 +92,12 @@ namespace windowsstoragebug
 					{
 						if ((position + currentBlockSize) > stream.Length)
 							currentBlockSize = (int)stream.Length - position;
+
+						if(currentBlockSize == 0)
+							continue;
+						
 						byte[] chunk = new byte[currentBlockSize];
 						stream.Read (chunk, 0, currentBlockSize);
-
-						Console.WriteLine (currentBlockSize);
 
 						var base64BlockId = Convert.ToBase64String(System.Text.Encoding.Default.GetBytes(blockId.ToString("d5")));
 
@@ -114,7 +118,7 @@ namespace windowsstoragebug
 
 					}
 
-					Console.WriteLine ("Committing");
+					Console.WriteLine ("committing");
 
 					blob.PutBlockList(blockIds);
 				}
