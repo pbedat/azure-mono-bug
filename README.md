@@ -1,9 +1,8 @@
-Requirements
-============
+# Run
 
-docker-compose
+  docker run pbedat/azure-mono-bug <account-name> <account-key>
 
-Run
-===
+or in the repo
+  
+  docker-compose azurestoragebug <account-name> <account-key>
 
-docker-compose azurestoragebug <account-name> <account-key>
