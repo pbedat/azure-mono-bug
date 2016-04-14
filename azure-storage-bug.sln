@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "azure-storage-bug", "windows-storage-bug\azure-storage-bug.csproj", "{D5CAFB72-403B-4C31-BFBE-58A92E203355}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "azure-storage-bug", "azure-storage-bug\azure-storage-bug.csproj", "{D5CAFB72-403B-4C31-BFBE-58A92E203355}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

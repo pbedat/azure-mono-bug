@@ -43,6 +43,7 @@
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Package>monodevelop</Package>
     </Reference>
     <Reference Include="Microsoft.Data.Services.Client">
       <HintPath>..\packages\Microsoft.Data.Services.Client.5.6.4\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>

@@ -80,7 +80,7 @@ namespace windowsstoragebug
 				using(var stream = File.OpenRead(file))
 				{
 					int position = 0;
-					const int BLOCK_SIZE = 4 * 1024 * 1024;
+					const int BLOCK_SIZE = 1 * 1024 * 1024;
 					int currentBlockSize = BLOCK_SIZE;
 
 					var blockIds = new List<string>();
@@ -92,6 +92,8 @@ namespace windowsstoragebug
 							currentBlockSize = (int)stream.Length - position;
 						byte[] chunk = new byte[currentBlockSize];
 						stream.Read (chunk, 0, currentBlockSize);
+
+						Console.WriteLine (currentBlockSize);
 
 						var base64BlockId = Convert.ToBase64String(System.Text.Encoding.Default.GetBytes(blockId.ToString("d5")));
 
