@@ -80,7 +80,7 @@ namespace windowsstoragebug
 				using(var stream = File.OpenRead(file))
 				{
 					int position = 0;
-					const int BLOCK_SIZE = 1 * 1024 * 1024;
+					const int BLOCK_SIZE = 4 * 1024 * 1024;
 					int currentBlockSize = BLOCK_SIZE;
 
 					var blockIds = new List<string>();

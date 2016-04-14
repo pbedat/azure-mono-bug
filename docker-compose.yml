@@ -1,0 +1,2 @@
+azurestoragebug:
+  build: ./azure-storage-bug

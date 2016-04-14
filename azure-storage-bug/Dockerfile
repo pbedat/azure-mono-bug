@@ -12,6 +12,9 @@ RUN apt-get update && \
 
 RUN mozroots --import --sync
 
-RUN git clone git://github.com/pbedat/azure-mono-bug.git
+RUN git clone git://github.com/pbedat/azure-mono-bug.git && \
+	cd azure-mono-bug && \
+	mono NuGet.exe restore && \
+	xbuild azure-storage-bug.sln
 
-#ENTRYPOINT /azure-mono-bug/azure-storage-bug/bin/Debug/azure-storage-bug.exe
+ENTRYPOINT ["mono", "/azure-mono-bug/azure-storage-bug/bin/Debug/azure-storage-bug.exe"]
